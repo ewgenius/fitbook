@@ -10,6 +10,7 @@
     "react-scripts-typescript-scss": "0.9.12"
   },
   "dependencies": {
+    "firebase": "^3.6.9",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },
