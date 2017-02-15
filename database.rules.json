@@ -1,6 +1,27 @@
 {
   "rules": {
-    ".read": "auth != null",
-    ".write": "auth != null"
+    "activities": {
+      // anyone can read available activities
+      ".read": true
+    },
+    "users": {
+      "$user_id": {
+        // only authorized user can read his own section
+        ".read": "auth != null && $user_id === auth.uid",
+        "profile": {
+          // profile data
+          ".write": "auth != null && $user_id === auth.uid"
+        },
+        "activities": {
+          "$activity_id": {
+            // only existing activity can be added
+            ".write": "root.child('activities/' + $activity_id).exists()"
+          }
+        },
+        "shedule": {
+          ".write": "auth != null && $user_id === auth.uid"
+        }
+      }
+    }
   }
 }
