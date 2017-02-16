@@ -4,9 +4,11 @@
   "private": true,
   "devDependencies": {
     "@types/jest": "^18.1.1",
+    "@types/material-ui": "^0.16.51",
     "@types/node": "^7.0.5",
     "@types/react": "^15.0.9",
     "@types/react-dom": "^0.14.23",
+    "@types/react-tap-event-plugin": "^0.0.30",
     "react-scripts-typescript-scss": "0.9.12"
   },
   "dependencies": {
