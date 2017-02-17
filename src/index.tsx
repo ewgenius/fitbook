@@ -3,10 +3,14 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as configureTap from 'react-tap-event-plugin';
 import { initializeApp } from 'firebase';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import * as colors from 'material-ui/styles/colors';
+
+import { Router, Route, hashHistory } from 'react-router';
+
+import {theme} from './theme';
 import App from './components/App/App';
+import WelcomeView from './views/WelcomeView/WelcomeView';
 
 configureTap();
 
@@ -20,20 +24,8 @@ const config = {
 
 const app = initializeApp(config);
 
-const theme = getMuiTheme({
-  palette: {
-    primary1Color: colors.deepPurple500,
-    primary2Color: colors.deepPurple700,
-    primary3Color: colors.grey400,
-    accent1Color: colors.purpleA200,
-    accent2Color: colors.grey100,
-    accent3Color: colors.grey500
-  },
-  appBar: {
-    height: 56
-  }
-});
-
 ReactDOM.render(<MuiThemeProvider muiTheme={theme}>
-  <App />
+  <Router history={hashHistory}>
+    <Route path='/' component={WelcomeView}></Route>
+  </Router>
 </MuiThemeProvider>, document.getElementById('root'));
