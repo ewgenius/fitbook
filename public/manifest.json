@@ -4,8 +4,8 @@
   "start_url": "/index.html",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#37474f",
-  "theme_color": "#37474f",
+  "background_color": "#673AB7",
+  "theme_color": "#673AB7",
   "description": "github dashboard",
   "icons": [{
     "src": "favicon.ico",

@@ -5,6 +5,7 @@ import * as configureTap from 'react-tap-event-plugin';
 import { initializeApp } from 'firebase';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import * as colors from 'material-ui/styles/colors';
 import App from './components/App/App';
 
 configureTap();
@@ -20,6 +21,14 @@ const config = {
 const app = initializeApp(config);
 
 const theme = getMuiTheme({
+  palette: {
+    primary1Color: colors.deepPurple500,
+    primary2Color: colors.deepPurple700,
+    primary3Color: colors.grey400,
+    accent1Color: colors.purpleA200,
+    accent2Color: colors.grey100,
+    accent3Color: colors.grey500
+  },
   appBar: {
     height: 56
   }
