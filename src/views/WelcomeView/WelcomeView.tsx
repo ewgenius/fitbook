@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { Component, CSSProperties } from 'react';
 import { theme } from '../../theme';
+import { connect, Dispatch } from 'react-redux';
 import SwipeableViews from 'react-swipeable-views';
-import View from '../../components/View/View';
 import FlatButton from 'material-ui/FlatButton';
+import View from '../../components/View/View';
+import { State } from '../../reducers';
 
 const fillStyle: CSSProperties = {
   width: '100%',
@@ -25,7 +27,11 @@ const screens = [
   <View key={3} style={welcomeScreenStyle}>4</View>
 ];
 
-export default class App extends Component<any, {
+interface WelcomeViewProps {
+
+}
+
+class WelcomeView extends Component<any, {
   index: number;
 }> {
   state = {
@@ -59,13 +65,18 @@ export default class App extends Component<any, {
         flexFlow: 'row',
         width: '100%',
         maxWidth: 480,
-        alignItems: 'center',
-        padding: 16
+        alignItems: 'center'
       }}>
-        <FlatButton label='Prev' disabled={index === 0} onTouchTap={this.prevScreen} />
+        <FlatButton style={{ margin: 16 }} label='Prev' disabled={index === 0} onTouchTap={this.prevScreen} />
         <View style={{ flex: 1 }} />
-        <FlatButton label='Next' disabled={index === screens.length - 1} onTouchTap={this.nextScreen} />
+        <FlatButton style={{ margin: 16 }} label='Next' disabled={index === screens.length - 1} onTouchTap={this.nextScreen} />
       </View>
     </View>;
   }
 }
+
+export default connect((state: State) => {
+  return {
+    welcomeShowed: state.ui.welcomeShowed
+  };
+})(WelcomeView);

@@ -2,13 +2,14 @@ import './styles/index.scss';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as configureTap from 'react-tap-event-plugin';
+import { createStore, compose } from 'redux';
+import { Provider } from 'react-redux';
 import { initializeApp } from 'firebase';
-
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
 import { Router, Route, hashHistory } from 'react-router';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { reducer } from './reducers';
 
-import {theme} from './theme';
+import { theme } from './theme';
 import App from './components/App/App';
 import WelcomeView from './views/WelcomeView/WelcomeView';
 
@@ -24,8 +25,14 @@ const config = {
 
 const app = initializeApp(config);
 
+const enhancer = compose((window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__());
+
+const store = createStore(reducer, enhancer);
+
 ReactDOM.render(<MuiThemeProvider muiTheme={theme}>
-  <Router history={hashHistory}>
-    <Route path='/' component={WelcomeView}></Route>
-  </Router>
+  <Provider store={store}>
+    <Router history={hashHistory}>
+      <Route path='/' component={WelcomeView}></Route>
+    </Router>
+  </Provider>
 </MuiThemeProvider>, document.getElementById('root'));
